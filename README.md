@@ -30,7 +30,7 @@ Make sure you have the following installed:
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/your-username/study_planner.git
+   git clone https://github.com/SneakyShadowgit/study_planner.git
    cd study_planner
    ```
 
