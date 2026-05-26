@@ -88,7 +88,7 @@ study_planner/
 
 ## 👤 Author
 
-**Your Name**
+**Harikrishna P**
 - GitHub: [@SneakyShadowgit](https://github.com/SneakyShadowgit)
 
 ---
