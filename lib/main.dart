@@ -29,6 +29,14 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   late Box box;
+  final List<String> subjects = [
+    'C Programming',
+    'flutter',
+    'Mathematics',
+    'Network',
+    'General',
+  ];
+  String selectedsubject = 'C Programming';
   List<Map<String, dynamic>> tasks = [
     {'title': 'Study C programming', 'completed': false},
     {'title': 'Practice flutter', 'completed': false},
@@ -100,6 +108,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         : TextDecoration.none,
                   ),
                 ),
+                subtitle: Text(tasks[index]['subject'] ?? 'General'),
               ),
             ),
           );
@@ -112,10 +121,33 @@ class _HomeScreenState extends State<HomeScreen> {
             builder: (context) {
               return AlertDialog(
                 title: const Text('Add Task'),
-                content: TextField(
-                  controller: controller,
-                  decoration: const InputDecoration(hintText: "enter task"),
+                content: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    TextField(
+                      controller: controller,
+                      decoration: const InputDecoration(hintText: "enter task"),
+                    ),
+                    const SizedBox(height: 12,),
+                    StatefulBuilder(builder: (context, setDialogState){
+                      return DropdownButton<String>(
+                        value: selectedsubject,
+                        isExpanded: true,
+                        items: subjects.map((subject){
+                          return DropdownMenuItem(value: subject,
+                          child: Text(subject)
+                          );
+                        }).toList(),
+                        onChanged: (value){
+                          setDialogState((){
+                            selectedsubject = value!;
+                          });
+                        },
+                      );
+                    })
+                  ],
                 ),
+                
                 actions: [
                   TextButton(
                     onPressed: () {
@@ -129,6 +161,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         setState(() {
                           tasks.add({
                             'title': controller.text,
+                            'subject': selectedsubject,
                             'completed': false,
                           });
                         });
