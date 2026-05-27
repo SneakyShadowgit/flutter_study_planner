@@ -50,15 +50,6 @@ class _HomeScreenState extends State<HomeScreen> {
 
     return Scaffold(
       appBar: AppBar(title: const Text('Study Planner')),
-      // body: Column(
-      //   children: [
-      //     LinearProgressIndicator(
-      //       value: progress,
-      //       minHeight: 8,
-      //       borderRadius: BorderRadius.circular(4),
-      //     )
-      //   ]
-      // )
       body: Column(
         children: [
           ProgressCard(

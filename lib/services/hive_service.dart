@@ -8,9 +8,6 @@ class HiveService {
   List<Map<String, dynamic>> loadTasks() {
     final savedTasks = box.get('tasks');
     if (savedTasks != null) {
-      // tasks = List<Map<String, dynamic>>.from(
-      //   (savedTasks as List).map((item) => Map<String, dynamic>.from(item)),
-      // );
       return List<Map<String, dynamic>>.from(
         (savedTasks as List).map((item) {
           final task = Map<String, dynamic>.from(item);
