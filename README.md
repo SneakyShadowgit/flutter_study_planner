@@ -7,14 +7,14 @@ A simple yet effective **Flutter study task manager** that helps you organize an
 ## ✨ Features
 
 - ✅ **Add Tasks** — Quickly add new study tasks via a dialog popup
+- 🏷️ **Subject Tagging** — Assign each task to a subject (C Programming, Flutter, Mathematics, Network, General)
 - ☑️ **Mark as Complete** — Check off tasks with a tap; completed tasks are shown with a strikethrough
 - 🗑️ **Swipe to Delete** — Swipe a task left to remove it with a confirmation snackbar
+- 📊 **Progress Card** — Visual circular progress indicator showing today's completion percentage
 - 💾 **Local Persistence** — All tasks are saved locally using Hive (no internet required)
 - 📱 **Cross-Platform** — Runs on Android, iOS, Windows, Linux, macOS, and Web
 
 ---
-
-
 
 ## 🚀 Getting Started
 
@@ -30,8 +30,8 @@ Make sure you have the following installed:
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/SneakyShadowgit/study_planner.git
-   cd study_planner
+   git clone https://github.com/SneakyShadowgit/flutter_study_planner.git
+   cd flutter_study_planner
    ```
 
 2. **Install dependencies**
@@ -54,23 +54,26 @@ Make sure you have the following installed:
 | [hive](https://pub.dev/packages/hive) | ^2.2.3 | Local NoSQL database |
 | [hive_flutter](https://pub.dev/packages/hive_flutter) | ^1.1.0 | Hive integration for Flutter |
 
-
 ---
 
 ## 📁 Project Structure
 
 ```
-study_planner/
-├── lib/
-│   └── main.dart          # App entry point, UI & business logic
-├── android/               # Android platform files
-├── ios/                   # iOS platform files
-├── windows/               # Windows platform files
-├── linux/                 # Linux platform files
-├── macos/                 # macOS platform files
-├── web/                   # Web platform files
-├── test/                  # Unit & widget tests
-└── pubspec.yaml           # Project dependencies & metadata
+lib/
+├── main.dart                  # App entry point & StudyPlannerApp widget
+│
+├── screens/
+│   └── home_screen.dart       # HomeScreen with all state & logic
+│
+├── widgets/
+│   ├── progress_card.dart     # Today's Progress card UI
+│   └── task_tile.dart         # Individual task tile (Dismissible + Card)
+│
+├── services/
+│   └── hive_service.dart      # Hive load/save methods
+│
+└── data/
+    └── app_data.dart          # Subjects list
 ```
 
 ---
@@ -78,11 +81,11 @@ study_planner/
 ## 🧠 How It Works
 
 1. On app launch, Hive initializes and loads saved tasks from local storage
-2. Tasks are displayed in a scrollable list with a checkbox and title
-3. Tapping the **+** FAB opens a dialog to enter a new task
-4. Checking the checkbox marks a task as complete and persists the change
-5. Swiping a task to the left deletes it and updates local storage
-
+2. Tasks are displayed in a scrollable list with a checkbox, title, and subject label
+3. A **Progress Card** at the top shows how many tasks are done and a circular % indicator
+4. Tapping the **+** FAB opens a dialog to enter a task title and choose a subject
+5. Checking the checkbox marks a task as complete (strikethrough) and persists the change
+6. Swiping a task to the left deletes it and updates local storage
 
 ---
 
