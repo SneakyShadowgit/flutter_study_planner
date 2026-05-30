@@ -14,7 +14,7 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   late Box box;
   late HiveService hiveService;
-  String selectedsubject = 'C Programming';
+  late String selectedsubject;
   List<Map<String, dynamic>> tasks = [
     {'title': 'Study C programming', 'subject': 'General', 'completed': false},
     {'title': 'Practice flutter', 'subject': 'General', 'completed': false},
@@ -25,6 +25,7 @@ class _HomeScreenState extends State<HomeScreen> {
     super.initState();
     box = Hive.box('tasksBox');
     hiveService = HiveService(box);
+    selectedsubject = getSubjects().first;
     loadTasks();
   }
 
@@ -87,6 +88,8 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
+          final currentSubjects = getSubjects();
+          selectedsubject = currentSubjects.first;
           showDialog(
             context: context,
             builder: (context) {
@@ -105,7 +108,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         return DropdownButton<String>(
                           value: selectedsubject,
                           isExpanded: true,
-                          items: subjects.map((subject) {
+                          items: currentSubjects.map((subject) {
                             return DropdownMenuItem(
                               value: subject,
                               child: Text(subject),
